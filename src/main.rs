@@ -38,6 +38,8 @@ fn main() -> Result<()> {
         let perms = fs::metadata(&exe)?.permissions();
         fs::rename(&tmp, &exe)?;
         fs::set_permissions(&exe, perms)?;
+    } else {
+        fs::remove_file(&tmp)?;
     }
 
     Ok(())
