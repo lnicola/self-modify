@@ -1,5 +1,6 @@
 use byteorder::{NativeEndian, WriteBytesExt};
-use goblin::{error, Object};
+use goblin::error::Result;
+use goblin::Object;
 use std::env;
 use std::fs;
 
@@ -7,7 +8,7 @@ use std::fs;
 #[no_mangle]
 static mut RUN_COUNT: u32 = 0;
 
-fn main() -> error::Result<()> {
+fn main() -> Result<()> {
     let run_count = unsafe { RUN_COUNT };
     println!("Previous run count: {}", run_count);
     let exe = env::current_exe()?;
